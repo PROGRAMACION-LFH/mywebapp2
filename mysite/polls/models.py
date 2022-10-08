@@ -1,4 +1,8 @@
+from pickle import TRUE
+from statistics import mode
 from django.db import models
+from datetime import datetime
+from django.utils import timezone
 
 # Create your models here.
 
@@ -8,6 +12,9 @@ class Question(models.Model):
     status = models.BooleanField(default=True)
     order =models.IntegerField(null=True)
 
+    def test_was_published_recently(self):
+        return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+
     def __str__(self):
         return self.question_text
 
@@ -16,5 +23,5 @@ class Choice(models.Model):
     choice_text = models.CharField(max_length=200)
     votes = models.IntegerField(default=0)
 
-    def __str__(self):
-        return self.choice_text
+    #def __str__(self):
+    #    return self.choice_text

@@ -1,2 +1,5 @@
+postgres_docker
+*.pyc
 venv
 venvcls
+.vscode
