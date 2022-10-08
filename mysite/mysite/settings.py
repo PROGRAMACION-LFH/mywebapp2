@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
+from pickle import TRUE
 import dj_database_url
 from pathlib import Path
 import os
@@ -87,6 +88,8 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
     }
 }'''
 
+MAX_CONN_AGE=600
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -97,6 +100,11 @@ DATABASES = {
         'PORT': os.getenv('PORT'),
     }
 }
+
+if "DATABASE_URL" in os.environ
+    #Configure Django for Database_URL enviroment variable.
+    DATABASES["default"]=dj_database_url.config(
+        conn_max_age=MAX_CONN_AGE, ssl_require=TRUE)
 
 
 
