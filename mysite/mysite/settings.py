@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 from pickle import TRUE
 import dj_database_url
+
 from pathlib import Path
 import os
 
@@ -48,7 +49,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -93,19 +94,18 @@ MAX_CONN_AGE=600
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('NAME'),
-        'USER': os.getenv('USER'),
-        'PASSWORD': os.getenv('PASSWORD'),
-        'HOST': os.getenv('HOST'),
-        'PORT': os.getenv('PORT'),
+        'NAME': 'ejemplo',
+        'USER': 'postgres',
+        'PASSWORD': 'example',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
-if "DATABASE_URL" in os.environ
+if "DATABASE_URL" in os.environ:
     #Configure Django for Database_URL enviroment variable.
     DATABASES["default"]=dj_database_url.config(
-        conn_max_age=MAX_CONN_AGE, ssl_require=TRUE)
-
+        conn_max_age=MAX_CONN_AGE, ssl_require=True)
 
 
 # Password validation
